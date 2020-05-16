@@ -1,0 +1,63 @@
+body {
+  background-image: url(cloud.jpg);
+}
+.window {
+  height: 30%;
+  width: 40%;
+}
+.value {
+  width: 600px;
+}
+.center {
+  text-align: center;
+  height: 79px;
+  border-radius: 2%;
+  font-size: 20px;
+}
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  position: absolute;
+  left: 30%;
+  margin-top: 10px;
+}
+.lightblue {
+  background-color: #9be1f2;
+  color: blue;
+}
+.boxing {
+  border: 2px solid lightblue;
+  height: auto;
+  width: 50%;
+  align-items: center;
+  margin: 20px auto;
+  border-radius: 2%;
+}
+@media (max-width: 600px) {
+  .window {
+    width: 70%;
+    height: 34%;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+    position: absolute;
+    left: 20%;
+    margin-top: 5px;
+  }
+  .boxing {
+    border: 2px solid lightblue;
+    height: auto;
+    width: 70%;
+    align-items: center;
+    margin: 20px auto;
+    border-radius: 2%;
+  }
+  .center {
+    text-align: center;
+    height: 50px;
+    border-radius: 2%;
+  }
+}

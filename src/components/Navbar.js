@@ -55,7 +55,7 @@ const NavMenu = (props) => {
           <Button className="btn-nav" color="primary">
             Sign Up
           </Button>
-          <Button clasName="btn-nav" color="info">
+          <Button className="btn-nav" color="info">
             Log In
           </Button>
         </Collapse>
