@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Quicksand:wght@700&display=swap");
+.nav-menu-logo {
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 7px 0px 6px rgba(163, 181, 184, 0.58);
+}
+.nav-menu {
+  background-color: #9be1f2;
+  border: 2px solid blue;
+}
+.btn-nav {
+  margin-right: 5px;
+}
+.footer {
+  opacity: 0.5;
+}
+@media (max-width: 600px) {
+  .nav-menu-logo {
+    font-size: 16px;
+  }
+  .footer {
+    font-size: 12px;
+    opacity: 0.5;
+  }
+  .btn-nav {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
