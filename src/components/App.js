@@ -3,13 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavMenu from "./Navbar";
 import Footer from "./Footer";
 import Home from "./Home";
+import Panel from "./Panel";
 export class App extends Component {
   render() {
     return (
       <div>
-        <NavMenu />
-        <Home />
-        <Footer />
+        <Panel />
       </div>
     );
   }

@@ -1,9 +1,19 @@
 body {
   background-image: url(cloud.jpg);
+  background-size: cover;
 }
 .window {
   height: 30%;
   width: 40%;
+}
+.btn {
+  margin-left: 20px;
+}
+.textbtn {
+  display: inline-block;
+  width: 70px;
+  text-align: center;
+  margin-top: 20px;
 }
 .value {
   width: 600px;
@@ -35,6 +45,10 @@ body {
   border-radius: 2%;
 }
 @media (max-width: 600px) {
+  body {
+    background-image: url(cloud.jpg);
+    background-size: unset;
+  }
   .window {
     width: 70%;
     height: 34%;
@@ -57,7 +71,15 @@ body {
   }
   .center {
     text-align: center;
-    height: 50px;
+    height: 70px;
     border-radius: 2%;
+  }
+  .btn {
+    margin-left: 20px;
+  }
+  .textbtn {
+    display: inline-block;
+    width: 70px;
+    text-align: center;
   }
 }

@@ -12,6 +12,7 @@ import {
   Table,
 } from "reactstrap";
 import "../css/Values.css";
+import Loading from "./Loading";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -137,19 +138,8 @@ class Home extends Component {
     this.getValue();
   }
   render() {
-    if (this.state.values.length == 0) {
-      return (
-        <Container className="d-flex justify-content-center">
-          <Toast className="mt-5 window">
-            <ToastHeader>Fetching data...</ToastHeader>
-            <ToastBody className=" d-flex justify-content-center">
-              <Spinner className="mr-2" color="primary"></Spinner>
-              Loading...
-            </ToastBody>
-          </Toast>
-        </Container>
-      );
-    } else {
+    if (this.state.values.length === 0) return <Loading load={"Loading..."} />;
+    else {
       return (
         <div className="boxing">
           <div className="center blue">
