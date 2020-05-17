@@ -3,19 +3,18 @@ import IotApi from "@arduino/arduino-iot-client";
 import rp from "request-promise";
 import fetch from "node-fetch";
 import icon from "../css/1.svg.png";
-import {
-  Spinner,
-  Container,
-  ToastHeader,
-  Toast,
-  ToastBody,
-  Table,
-} from "reactstrap";
 import "../css/Values.css";
 import Loading from "./Loading";
+import { Button } from "reactstrap";
+// const humidityID = `867c0860-d2b0-4990-a2cb-a2170ef83ab6`;
+// const temperatureID = `bba7636a-9ccd-4a7c-848a-39c95bb3c23a`;
+const coolingID = `8039c5c8-09ee-465f-8d74-42cdd67cc575`;
+const foodID = `1486a5bc-a67c-4764-b318-ee7e643fff3f`;
+const waterID = `3d4da165-92c6-4100-bee5-9f17a7f94197`;
+const heatingID = `dc2f91ed-6fd5-4168-ad7a-2c3165e6cb99`;
 class Home extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = { values: [] };
 
     const url =
@@ -45,6 +44,7 @@ class Home extends Component {
         console.error("Failed getting an access token: " + error);
       }
     }
+    // eslint-disable-next-line no-unused-vars
     async function run() {
       var client = IotApi.ApiClient.instance;
       var oauth2 = client.authentications["oauth2"];
@@ -62,10 +62,9 @@ class Home extends Component {
       );
     }
 
-    async function setOn(id) {
+    this.setOn = async (id) => {
       try {
         token = await getToken();
-
         fetch(
           `https://cors-anywhere.herokuapp.com/${url}/properties/${id}/publish`,
           {
@@ -84,8 +83,8 @@ class Home extends Component {
       } catch (err) {
         console.log(err);
       }
-    }
-    async function setOff(id) {
+    };
+    this.setOff = async (id) => {
       try {
         token = await getToken();
 
@@ -107,7 +106,7 @@ class Home extends Component {
       } catch (err) {
         console.log(err);
       }
-    }
+    };
     this.getValue = async () => {
       try {
         token = await getToken();
@@ -177,4 +176,83 @@ class Home extends Component {
     }
   }
 }
-export default Home;
+class Buttons extends Home {
+  render() {
+    return (
+      <div>
+        <div className="boxing">
+          <div className="center blue">
+            <div className="textbtn">Food</div>
+            <Button
+              onClick={() => Home.setOn(foodID)}
+              className="btn"
+              color="primary"
+            >
+              On
+            </Button>
+            <Button
+              onClick={() => Home.setOff(foodID)}
+              className="btn"
+              color="danger"
+            >
+              Off
+            </Button>
+          </div>
+          <div className="center lightblue">
+            <div className="textbtn">Water</div>
+            <Button
+              onClick={() => this.setOn(waterID)}
+              className="btn"
+              color="primary"
+            >
+              On
+            </Button>
+            <Button
+              onClick={() => this.setOff(waterID)}
+              className="btn"
+              color="danger"
+            >
+              Off
+            </Button>
+          </div>
+          <div className="center blue">
+            <div className="textbtn">Heating</div>
+            <Button
+              onClick={() => this.setOn(heatingID)}
+              className="btn"
+              color="primary"
+            >
+              On
+            </Button>
+            <Button
+              onClick={() => this.setOff(heatingID)}
+              className="btn"
+              color="danger"
+            >
+              Off
+            </Button>
+          </div>
+          <div className="center lightblue">
+            <div className="textbtn">Cooling</div>
+            <Button
+              onClick={() => this.setOn(coolingID)}
+              className="btn"
+              color="primary"
+            >
+              On
+            </Button>
+            <Button
+              onClick={() => this.setOff(coolingID)}
+              className="btn"
+              color="danger"
+            >
+              Off
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export { Home, Buttons };
