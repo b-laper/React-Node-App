@@ -15,7 +15,7 @@ const heatingID = `dc2f91ed-6fd5-4168-ad7a-2c3165e6cb99`;
 class Home extends Component {
   constructor() {
     super();
-    this.state = { values: [] };
+    this.state = { values: [], hasError: false };
 
     const url =
       "https://api2.arduino.cc/iot/v2/things/d0143c1c-19b6-49bf-9bc8-03c68a1114fe";
@@ -123,10 +123,10 @@ class Home extends Component {
         )
           .then((res) => res.json())
           .then((res) => {
-            this.setState({ values: res.properties });
+            if (res.properties) this.setState({ values: res.properties });
           })
           .catch((error) => {
-            console.error("Error:", error);
+            console.log("Error:", error);
           });
       } catch (err) {
         console.log(err);
@@ -138,7 +138,7 @@ class Home extends Component {
   }
   render() {
     if (this.state.values.length === 0) return <Loading load={"Loading..."} />;
-    else {
+    else if (this.state.values) {
       return (
         <div className="boxing">
           <div className="center blue">
@@ -146,14 +146,14 @@ class Home extends Component {
             Temperature:
             {this.state.values[4].last_value
               ? this.state.values[4].last_value + "°C"
-              : "No data"}
+              : this.state.values}
           </div>
           <div className="center lightblue">
             <img className="icon right" src={icon} alt="o" />
             Humidity:
             {this.state.values[5].last_value
               ? this.state.values[5].last_value + "%"
-              : "No data"}
+              : this.state.values}
           </div>
           <div className="center blue">
             <img className="icon right" src={icon} alt="o" />
@@ -184,14 +184,14 @@ class Buttons extends Home {
           <div className="center blue">
             <div className="textbtn">Food</div>
             <Button
-              onClick={() => Home.setOn(foodID)}
+              onClick={() => this.setOn(foodID)}
               className="btn"
               color="primary"
             >
               On
             </Button>
             <Button
-              onClick={() => Home.setOff(foodID)}
+              onClick={() => this.setOff(foodID)}
               className="btn"
               color="danger"
             >
@@ -254,5 +254,4 @@ class Buttons extends Home {
     );
   }
 }
-
 export { Home, Buttons };
