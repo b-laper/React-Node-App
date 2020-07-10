@@ -6,19 +6,15 @@ import icon from "../css/1.svg.png";
 import "../css/Values.css";
 import Loading from "./Loading";
 import { Button } from "reactstrap";
-// const humidityID = `867c0860-d2b0-4990-a2cb-a2170ef83ab6`;
-// const temperatureID = `bba7636a-9ccd-4a7c-848a-39c95bb3c23a`;
-const coolingID = `8039c5c8-09ee-465f-8d74-42cdd67cc575`;
-const foodID = `1486a5bc-a67c-4764-b318-ee7e643fff3f`;
-const waterID = `3d4da165-92c6-4100-bee5-9f17a7f94197`;
-const heatingID = `dc2f91ed-6fd5-4168-ad7a-2c3165e6cb99`;
+
+
 class Home extends Component {
   constructor() {
     super();
     this.state = { values: [], hasError: false };
 
     const url =
-      "https://api2.arduino.cc/iot/v2/things/d0143c1c-19b6-49bf-9bc8-03c68a1114fe";
+      "YOUR URL";
     let token;
 
     async function getToken() {
@@ -32,8 +28,8 @@ class Home extends Component {
         json: true,
         form: {
           grant_type: "client_credentials",
-          client_id: "oKzkiGDVHld3SjeNZ10TN1JMo00lHQXF",
-          client_secret: `8DYrgDarnFfeAklLf0muYFdbp51qPNprmorBwyHqLfLATBieFIaHpROxY4cWaNlU`,
+          client_id: "ID",
+          client_secret: `TOKEN`,
           audience: "https://api2.arduino.cc/iot",
         },
       };
@@ -93,7 +89,7 @@ class Home extends Component {
           {
             method: "PUT",
             hostname: "api2.arduino.cc",
-            path: `/iot/v1/things/d0143c1c-19b6-49bf-9bc8-03c68a1114fe/properties/${id}`,
+            path: `/iot/v1/things/DeviceID/properties/${id}`,
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -111,7 +107,7 @@ class Home extends Component {
       try {
         token = await getToken();
         await fetch(
-          `https://cors-anywhere.herokuapp.com/https://api2.arduino.cc/iot/v2/things/d0143c1c-19b6-49bf-9bc8-03c68a1114fe`,
+          `https://cors-anywhere.herokuapp.com/https://api2.arduino.cc/iot/v2/things/DeviceID`,
           {
             method: "GET",
             hostname: "api2.arduino.cc",
